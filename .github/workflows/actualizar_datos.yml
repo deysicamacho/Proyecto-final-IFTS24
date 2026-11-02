@@ -1,0 +1,51 @@
+# Actualiza los datos y las predicciones de la aplicación cada día hábil.
+# Si el pipeline falla, no se publica nada nuevo y la aplicación sigue mostrando la última actualización correcta.
+name: Actualizar datos del dólar blue
+
+on:
+  schedule:
+    - cron: "7 22 * * 1-5"      # 19:07 de Argentina (22:07 UTC), de lunes a viernes
+  workflow_dispatch:             # botón "Run workflow" para actualizar a mano
+
+permissions:
+  contents: write                # necesario para guardar los CSV nuevos en el repositorio
+
+concurrency:
+  group: actualizar-datos
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      TZ: America/Argentina/Buenos_Aires
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-pipeline.txt
+
+      - name: Instalar dependencias
+        run: pip install -r requirements-pipeline.txt
+
+      - name: Ejecutar el pipeline (los lunes también compara algoritmos)
+        run: |
+          if [ "$(date +%u)" = "1" ]; then python actualizar_pipeline.py --comparar; else python actualizar_pipeline.py; fi
+
+      - name: Publicar los resultados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/dataset_dolar_blue.csv data/diagnostico_dataset.csv data/app/estado.json \
+                  data/modelo_h1/*.csv data/modelo_h10/*.csv data/modelos/*.csv
+          if git diff --cached --quiet; then
+            echo "Sin cambios para publicar."
+          else
+            git commit -m "Actualización automática de datos $(date +%d/%m/%Y)"
+            git push
+          fi
