@@ -1,0 +1,33 @@
+{
+  "version_actualizador": "1.0",
+  "inicio": "2026-11-01T20:39:36-03:00",
+  "avisos": [],
+  "predicciones": {
+    "1": {
+      "fecha_predicha": "02/11/2026",
+      "blue_predicho": 1566.24,
+      "alerta_alta_incertidumbre": 0
+    },
+    "10": {
+      "fecha_predicha": "13/11/2026",
+      "blue_predicho": 1573.09,
+      "alerta_alta_incertidumbre": 0
+    }
+  },
+  "actualizado": "2026-11-01T20:40:18-03:00",
+  "ultimo_dato": "30/10/2026",
+  "blue_ultimo_dato": 1565.0,
+  "versiones": {
+    "construir_dataset": "3.4",
+    "analisis_eda_features": "2.0",
+    "comparar_modelos": "2.1",
+    "modelo_diario": "2.1"
+  },
+  "grupos_modelo": [
+    "A_precio_y_brecha",
+    "C_mensuales_sentimiento_inflacion",
+    "D_regimen_y_calendario",
+    "E_mep_ccl"
+  ],
+  "duracion_min": 0.7
+}

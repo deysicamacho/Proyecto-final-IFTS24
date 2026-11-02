@@ -1,0 +1,8 @@
+Carpeta de archivos que se cargan a mano (el pipeline NO los descarga):
+
+  ICC.xlsx          Índice de Confianza del Consumidor (Universidad Torcuato Di Tella)
+  ICG.xlsx          Índice de Confianza en el Gobierno (Universidad Torcuato Di Tella)
+  merval_msci.csv   (opcional) cierres del MSCI Merval desde el 19/10/2026; columnas fecha;cierre, fecha DD/MM/AAAA, coma decimal
+
+Cada mes, cuando la UTDT publica un dato nuevo, reemplazá ICC.xlsx e ICG.xlsx en esta carpeta del repositorio de GitHub
+(botón "Add file" > "Upload files"). Si no se actualizan, el pipeline usa el último valor disponible.

@@ -1,0 +1,133 @@
+﻿variable;grupo;frecuencia;aumento_MAPE_puntos;horizonte;modelo
+ret_blue_1;A_precio_y_brecha;diaria;-0,0001406667150562665;1;SVR
+ret_blue_5;A_precio_y_brecha;diaria;-0,0002418203434075962;1;SVR
+ret_blue_10;A_precio_y_brecha;diaria;0,0005706899068277248;1;SVR
+ret_blue_20;A_precio_y_brecha;diaria;0,0006796868036985155;1;SVR
+ret_blue_60;A_precio_y_brecha;diaria;0,000457977875639331;1;SVR
+vol_blue_20;A_precio_y_brecha;diaria;8,272355936054615e-05;1;SVR
+vol_blue_60;A_precio_y_brecha;diaria;0,0003214830781074269;1;SVR
+dist_media_blue_20;A_precio_y_brecha;diaria;0,0007760716793000561;1;SVR
+dist_media_blue_60;A_precio_y_brecha;diaria;0,0002805539095122539;1;SVR
+ret_oficial_5;A_precio_y_brecha;diaria;0,00028812994008816284;1;SVR
+ret_oficial_20;A_precio_y_brecha;diaria;0,00026557737191430016;1;SVR
+brecha_pct;A_precio_y_brecha;diaria;0,0005915817276955596;1;SVR
+brecha_cambio_5;A_precio_y_brecha;diaria;-5,12319354475315e-05;1;SVR
+brecha_cambio_20;A_precio_y_brecha;diaria;0,0002146982392538213;1;SVR
+brecha_z_120;A_precio_y_brecha;diaria;0,00023357922857571002;1;SVR
+regimen_brecha_alta;A_precio_y_brecha;diaria;0,0005599849094521443;1;SVR
+icg_t1;C_mensuales_sentimiento_inflacion;mensual;7,840373354265719e-05;1;SVR
+icc_t1;C_mensuales_sentimiento_inflacion;mensual;1,944365331807418e-05;1;SVR
+d_icg_t1;C_mensuales_sentimiento_inflacion;mensual;0,0005191009252073929;1;SVR
+d_icc_t1;C_mensuales_sentimiento_inflacion;mensual;0,00048083047134908933;1;SVR
+infl_t1;C_mensuales_sentimiento_inflacion;mensual;0,0005589436055697209;1;SVR
+infl_acel_t1;C_mensuales_sentimiento_inflacion;mensual;-8,217156925549589e-05;1;SVR
+tasa_real_mensual;C_mensuales_sentimiento_inflacion;mensual;0,00019983918314693384;1;SVR
+cepo;D_regimen_y_calendario;diaria;-7,243870142929302e-06;1;SVR
+dias_a_eleccion;D_regimen_y_calendario;diaria;-0,0003385952170516639;1;SVR
+dias_desde_eleccion;D_regimen_y_calendario;diaria;0,0005696146638686906;1;SVR
+dia_semana;D_regimen_y_calendario;diaria;-0,0006908226864612505;1;SVR
+dia_mes;D_regimen_y_calendario;diaria;0,0012379767078115856;1;SVR
+mes_aguinaldo;D_regimen_y_calendario;diaria;0,001734444522828498;1;SVR
+brecha_blue_mep_pct;E_mep_ccl;diaria;0,0011827384130036233;1;SVR
+brecha_blue_mep_cambio_5;E_mep_ccl;diaria;-0,00015939606464075872;1;SVR
+ret_mep_1;E_mep_ccl;diaria;0,0032652816059065373;1;SVR
+ret_mep_5;E_mep_ccl;diaria;0,0009002008151594514;1;SVR
+ret_mep_20;E_mep_ccl;diaria;0,0009327387927975445;1;SVR
+brecha_blue_ccl_pct;E_mep_ccl;diaria;0,0016063333109953002;1;SVR
+brecha_blue_ccl_cambio_5;E_mep_ccl;diaria;-0,00020393963042556224;1;SVR
+ret_ccl_1;E_mep_ccl;diaria;0,0008223300692491196;1;SVR
+ret_ccl_5;E_mep_ccl;diaria;0,0005380351952520722;1;SVR
+ret_ccl_20;E_mep_ccl;diaria;-0,00023381775848277075;1;SVR
+canje_ccl_mep_pct;E_mep_ccl;diaria;0,00012041142828802777;1;SVR
+[GRUPO] A_precio_y_brecha;A_precio_y_brecha;diaria;0,004599469409799378;1;SVR
+[GRUPO] C_mensuales_sentimiento_inflacion;C_mensuales_sentimiento_inflacion;mensual;0,0016517872804486182;1;SVR
+[GRUPO] D_regimen_y_calendario;D_regimen_y_calendario;diaria;0,002084611836386073;1;SVR
+[GRUPO] E_mep_ccl;E_mep_ccl;diaria;0,012126093408209132;1;SVR
+ret_blue_1;A_precio_y_brecha;diaria;0,0032392067314594244;10;SVR
+ret_blue_5;A_precio_y_brecha;diaria;0,0010248755116335983;10;SVR
+ret_blue_10;A_precio_y_brecha;diaria;-0,0008650837707290124;10;SVR
+ret_blue_20;A_precio_y_brecha;diaria;0,00570099648867095;10;SVR
+ret_blue_60;A_precio_y_brecha;diaria;0,00383346164749766;10;SVR
+vol_blue_20;A_precio_y_brecha;diaria;0,0036338064952630643;10;SVR
+vol_blue_60;A_precio_y_brecha;diaria;0,010225895790352909;10;SVR
+dist_media_blue_20;A_precio_y_brecha;diaria;0,0009245437286022899;10;SVR
+dist_media_blue_60;A_precio_y_brecha;diaria;-0,003575679107192735;10;SVR
+ret_oficial_5;A_precio_y_brecha;diaria;0,00824526186210011;10;SVR
+ret_oficial_20;A_precio_y_brecha;diaria;0,012080778447742852;10;SVR
+brecha_pct;A_precio_y_brecha;diaria;0,02341494411545404;10;SVR
+brecha_cambio_5;A_precio_y_brecha;diaria;0,006897430344443665;10;SVR
+brecha_cambio_20;A_precio_y_brecha;diaria;0,00491115403170111;10;SVR
+brecha_z_120;A_precio_y_brecha;diaria;0,013494035631642915;10;SVR
+regimen_brecha_alta;A_precio_y_brecha;diaria;0,018341022138985526;10;SVR
+icg_t1;C_mensuales_sentimiento_inflacion;mensual;0,0004885883486626971;10;SVR
+icc_t1;C_mensuales_sentimiento_inflacion;mensual;0,011081081842535484;10;SVR
+d_icg_t1;C_mensuales_sentimiento_inflacion;mensual;-0,0016783771480692634;10;SVR
+d_icc_t1;C_mensuales_sentimiento_inflacion;mensual;0,0035171133317623616;10;SVR
+infl_t1;C_mensuales_sentimiento_inflacion;mensual;0,0073270205380205275;10;SVR
+infl_acel_t1;C_mensuales_sentimiento_inflacion;mensual;0,009290789017232534;10;SVR
+tasa_real_mensual;C_mensuales_sentimiento_inflacion;mensual;0,0032905368751442073;10;SVR
+cepo;D_regimen_y_calendario;diaria;-0,00028399417094560064;10;SVR
+dias_a_eleccion;D_regimen_y_calendario;diaria;-0,0165988381554141;10;SVR
+dias_desde_eleccion;D_regimen_y_calendario;diaria;0,0175456021887084;10;SVR
+dia_semana;D_regimen_y_calendario;diaria;0,002828873018375693;10;SVR
+dia_mes;D_regimen_y_calendario;diaria;0,035188277317760204;10;SVR
+mes_aguinaldo;D_regimen_y_calendario;diaria;0,15608981563973917;10;SVR
+brecha_blue_mep_pct;E_mep_ccl;diaria;0,0400001784300879;10;SVR
+brecha_blue_mep_cambio_5;E_mep_ccl;diaria;0,004354506411542052;10;SVR
+ret_mep_1;E_mep_ccl;diaria;0,012341977422471168;10;SVR
+ret_mep_5;E_mep_ccl;diaria;0,003530294643590843;10;SVR
+ret_mep_20;E_mep_ccl;diaria;0,0002877730641524699;10;SVR
+brecha_blue_ccl_pct;E_mep_ccl;diaria;0,042721509575861315;10;SVR
+brecha_blue_ccl_cambio_5;E_mep_ccl;diaria;0,0020271199223962123;10;SVR
+ret_ccl_1;E_mep_ccl;diaria;0,0005374003582255198;10;SVR
+ret_ccl_5;E_mep_ccl;diaria;-0,000298367620062671;10;SVR
+ret_ccl_20;E_mep_ccl;diaria;0,0011593830590542874;10;SVR
+canje_ccl_mep_pct;E_mep_ccl;diaria;0,008157520001773019;10;SVR
+[GRUPO] A_precio_y_brecha;A_precio_y_brecha;diaria;0,09300172060924959;10;SVR
+[GRUPO] C_mensuales_sentimiento_inflacion;C_mensuales_sentimiento_inflacion;mensual;0,0188024781352984;10;SVR
+[GRUPO] D_regimen_y_calendario;D_regimen_y_calendario;diaria;0,21441280297344836;10;SVR
+[GRUPO] E_mep_ccl;E_mep_ccl;diaria;0,12291753564109077;10;SVR
+ret_blue_1;A_precio_y_brecha;diaria;0,01077707555641748;20;SVR
+ret_blue_5;A_precio_y_brecha;diaria;0,006070485130587204;20;SVR
+ret_blue_10;A_precio_y_brecha;diaria;0,003967972251922753;20;SVR
+ret_blue_20;A_precio_y_brecha;diaria;-0,0009594441642035975;20;SVR
+ret_blue_60;A_precio_y_brecha;diaria;0,010547280177155267;20;SVR
+vol_blue_20;A_precio_y_brecha;diaria;0,01552738019276243;20;SVR
+vol_blue_60;A_precio_y_brecha;diaria;0,02229342816822233;20;SVR
+dist_media_blue_20;A_precio_y_brecha;diaria;0,00016581244439474105;20;SVR
+dist_media_blue_60;A_precio_y_brecha;diaria;-0,0001714595711101263;20;SVR
+ret_oficial_5;A_precio_y_brecha;diaria;0,010434971441019335;20;SVR
+ret_oficial_20;A_precio_y_brecha;diaria;0,022913824512876355;20;SVR
+brecha_pct;A_precio_y_brecha;diaria;0,0434401383461974;20;SVR
+brecha_cambio_5;A_precio_y_brecha;diaria;0,015142404065249719;20;SVR
+brecha_cambio_20;A_precio_y_brecha;diaria;0,014115774825052219;20;SVR
+brecha_z_120;A_precio_y_brecha;diaria;0,07893615917083308;20;SVR
+regimen_brecha_alta;A_precio_y_brecha;diaria;0,015023590839828209;20;SVR
+icg_t1;C_mensuales_sentimiento_inflacion;mensual;-0,0035884835589772533;20;SVR
+icc_t1;C_mensuales_sentimiento_inflacion;mensual;0,02687115503551743;20;SVR
+d_icg_t1;C_mensuales_sentimiento_inflacion;mensual;0,002021990858497746;20;SVR
+d_icc_t1;C_mensuales_sentimiento_inflacion;mensual;0,0710235998836898;20;SVR
+infl_t1;C_mensuales_sentimiento_inflacion;mensual;0,032162802260027275;20;SVR
+infl_acel_t1;C_mensuales_sentimiento_inflacion;mensual;0,013367621499641732;20;SVR
+tasa_real_mensual;C_mensuales_sentimiento_inflacion;mensual;-0,010488899729554274;20;SVR
+cepo;D_regimen_y_calendario;diaria;-0,0014541977465350403;20;SVR
+dias_a_eleccion;D_regimen_y_calendario;diaria;-0,03843631022062155;20;SVR
+dias_desde_eleccion;D_regimen_y_calendario;diaria;0,01261075997472664;20;SVR
+dia_semana;D_regimen_y_calendario;diaria;-0,001112217071165119;20;SVR
+dia_mes;D_regimen_y_calendario;diaria;-0,0017404122816780576;20;SVR
+mes_aguinaldo;D_regimen_y_calendario;diaria;0,2424362301267249;20;SVR
+brecha_blue_mep_pct;E_mep_ccl;diaria;0,034988890789967385;20;SVR
+brecha_blue_mep_cambio_5;E_mep_ccl;diaria;0,0063623272339924245;20;SVR
+ret_mep_1;E_mep_ccl;diaria;0,008230159090100707;20;SVR
+ret_mep_5;E_mep_ccl;diaria;0,004067370896189261;20;SVR
+ret_mep_20;E_mep_ccl;diaria;-0,00407159378236435;20;SVR
+brecha_blue_ccl_pct;E_mep_ccl;diaria;0,047703398095714444;20;SVR
+brecha_blue_ccl_cambio_5;E_mep_ccl;diaria;0,007571995429397843;20;SVR
+ret_ccl_1;E_mep_ccl;diaria;0,003284978695761017;20;SVR
+ret_ccl_5;E_mep_ccl;diaria;0,007550236983065783;20;SVR
+ret_ccl_20;E_mep_ccl;diaria;0,0021080020525158093;20;SVR
+canje_ccl_mep_pct;E_mep_ccl;diaria;0,026100579517173372;20;SVR
+[GRUPO] A_precio_y_brecha;A_precio_y_brecha;diaria;0,10223411996521477;20;SVR
+[GRUPO] C_mensuales_sentimiento_inflacion;C_mensuales_sentimiento_inflacion;mensual;0,09734609406806967;20;SVR
+[GRUPO] D_regimen_y_calendario;D_regimen_y_calendario;diaria;0,20748693125466902;20;SVR
+[GRUPO] E_mep_ccl;E_mep_ccl;diaria;0,13948838346283407;20;SVR
