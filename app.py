@@ -1,5 +1,5 @@
 """
-Aplicación web del proyecto: predicción del dólar blue (Streamlit).  -- versión 1.0
+Aplicación web del proyecto: predicción del dólar blue (Streamlit).  -- versión 1.1
 
 Muestra lo que produce el pipeline (actualizar_pipeline.py → modelo_diario.py):
   - el valor estimado del blue para el próximo día hábil y a dos semanas, con su rango probable del 80% y 95%;
@@ -21,7 +21,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-VERSION = "1.0"
+VERSION = "1.1"
 DATA = Path(__file__).parent / "data"
 ZONA = ZoneInfo("America/Argentina/Buenos_Aires")
 LEER = dict(sep=";", decimal=",", encoding="utf-8-sig")
@@ -80,12 +80,18 @@ def pct(x: float, dec: int = 1, signo: bool = False) -> str:
 
 
 # ───────────────────────────── DATOS ─────────────────────────────
-def _mtime(ruta: Path) -> float:
-    return ruta.stat().st_mtime if ruta.exists() else 0.0
+def _firma(ruta: Path) -> tuple:
+    """Fecha de modificación y tamaño del archivo: si cambian, la caché se renueva y se leen los datos nuevos."""
+    if not ruta.exists():
+        return (0.0, 0)
+    st_ = ruta.stat()
+    return (st_.st_mtime, st_.st_size)
 
 
+# Ojo: en st.cache_data los parámetros que empiezan con "_" NO forman parte de la clave de la caché.
+# Por eso la firma del archivo se pasa como "firma" (sin guion bajo): así cada actualización de los CSV invalida la caché.
 @st.cache_data(show_spinner=False)
-def _csv(ruta: str, fechas: tuple, _mtime: float) -> pd.DataFrame | None:
+def _csv(ruta: str, fechas: tuple, firma: tuple) -> pd.DataFrame | None:
     p = Path(ruta)
     if not p.exists():
         return None
@@ -97,7 +103,7 @@ def _csv(ruta: str, fechas: tuple, _mtime: float) -> pd.DataFrame | None:
 
 
 def csv(ruta: Path, fechas: tuple = ()) -> pd.DataFrame | None:
-    return _csv(str(ruta), fechas, _mtime(ruta))
+    return _csv(str(ruta), fechas, _firma(ruta))
 
 
 def cargar() -> dict:
