@@ -5,6 +5,7 @@ name: Actualizar datos del dólar blue
 on:
   schedule:
     - cron: "7 22 * * 1-5"      # 19:07 de Argentina (22:07 UTC), de lunes a viernes
+    - cron: "37 0 * * 2-6"     # 21:37 de Argentina, lunes a viernes (respaldo)
   workflow_dispatch:             # botón "Run workflow" para actualizar a mano
 
 permissions:
