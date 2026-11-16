@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Análisis exploratorio (EDA) + ingeniería de variables para predecir el dólar blue.  -- versión 1.0
+Análisis exploratorio (EDA) + ingeniería de variables para predecir el dólar blue.  -- versión 2.2
 
 Entrada : data/dataset_dolar_blue.csv  (lo genera construir_dataset_dolar_blue.py; también acepta dataset_dolar_blue_4.csv, etc.)
 Salidas : data/features_dolar_blue.csv      tabla lista para modelar (variables + objetivos + columna "conjunto")
@@ -13,7 +13,7 @@ Salidas : data/features_dolar_blue.csv      tabla lista para modelar (variables 
 Decisiones de diseño (todas se pueden cambiar en CONFIGURACIÓN):
   1. Se modela sobre DÍAS HÁBILES (lun-vie). Los sábados/domingos son copias del viernes y duplicarían filas idénticas.
   2. OBJETIVO = variación logarítmica del blue a h días hábiles:  y_h = 100 * ln(blue[t+h] / blue[t]).
-     No se predice el nivel: el blue pasó de 14 a 1.570 pesos y un árbol (XGBoost) no puede predecir valores fuera del rango visto.
+     No se predice el nivel: el blue pasó de 14 a 1.570 pesos y un modelo de árboles (Random Forest) no puede predecir valores fuera del rango visto.
      El precio se reconstruye así:  blue_predicho = blue[t] * exp(y_predicho / 100)  y el MAPE se mide sobre ese precio.
   3. Ninguna variable usa datos futuros: en la fila t solo entra información disponible hasta t (se verifica solo con
      verificar_sin_fuga()). Las variables del BCRA ya llegan con 1 día de rezago desde el dataset.
@@ -44,7 +44,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-VERSION = "2.0"
+VERSION = "2.2"
 
 # ───────────────────────────── CONFIGURACIÓN ─────────────────────────────
 DIR_OUT = Path("data")
@@ -136,7 +136,7 @@ def informe_calidad(d_all: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
             ult = d_all.loc[d_all[c].last_valid_index(), "fecha"]
             if (d_all["fecha"].iloc[-1] - ult).days > 4:
                 print(f"  ⚠ {c}: sin datos desde {ult + pd.Timedelta(days=1):%d/%m/%Y}. Para el MSCI Merval cargá raw/merval_msci.csv "
-                      "y volvé a correr construir_dataset_dolar_blue.py. Las variables derivadas quedan vacías (XGBoost admite NaN).")
+                      "y volvé a correr construir_dataset_dolar_blue.py. Las variables derivadas quedan vacías (los modelos las completan con la mediana del entrenamiento).")
     print(f"  Días con brecha < 0 (blue por debajo del oficial): {(d['brecha_pct'] < 0).sum()}")
 
     g = d.groupby(d["fecha"].dt.year)
@@ -156,8 +156,9 @@ def informe_calidad(d_all: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
     print("\nMayores saltos diarios del blue (%):", " | ".join(f"{f:%d/%m/%Y} {v:+.1f}" for f, v in zip(d.loc[top.index, "fecha"], top)))
     print("  → son eventos reales (PASO 2019, devaluación de dic-2023, etc.): NO se borran; se marcan con Isolation Forest y se usa un objetivo winsorizado opcional.")
     print("\nSobre normalización: el modelo NO recibe el blue, el oficial ni las reservas en nivel, sino variaciones (%), brecha y diferencias;")
-    print("  por eso los cambios de escala (pesos, millones de USD, puntos básicos, %) no obligan a estandarizar para árboles (XGBoost).")
-    print("  Para regresión lineal / redes sí: usar estandarizar(train, test) más abajo (ajustada solo con el entrenamiento).")
+    print("  por eso los cambios de escala (pesos, millones de USD, puntos básicos, %) no afectan al Random Forest.")
+    print("  ElasticNet y SVR sí necesitan variables estandarizadas: comparar_modelos.py las estandariza dentro del pipeline,")
+    print("  con la media y el desvío del entrenamiento (función equivalente acá: estandarizar()).")
     return tabla
 
 
@@ -228,13 +229,16 @@ def construir_features(d: pd.DataFrame) -> pd.DataFrame:
     f["carry_oficial_20"] = bad * 20 / 365 - f["ret_oficial_20"]      # rendimiento del peso (BADLAR a 20 días) menos la depreciación oficial de 20 días
 
     # ── Mercado de capitales: Merval y ARGT (variaciones diarias acumuladas; vacías si la fuente no tiene datos) ──
+    # Las columnas se crean SIEMPRE (vacías si no hay datos): así el conjunto de variables no depende de qué parte de la serie
+    # tiene datos. Antes, si el Merval solo tenía datos en el tramo final, verificar_sin_fuga fallaba con
+    # "['merval_ret_5', 'merval_ret_20'] not in index" (corrección de la versión 2.2).
     for col, pref in (("merval_var_pct", "merval"), ("argt_var_pct", "argt")):
-        if col in d.columns and d[col].notna().any():
-            lv = np.log1p(d[col] / 100)
-            for k in (5, 20):
-                f[f"{pref}_ret_{k}"] = lv.rolling(k, min_periods=k).sum() * 100
-    if "argt_var_pct" in d.columns and d["argt_var_pct"].notna().any():
-        f["argt_vol_20"] = d["argt_var_pct"].rolling(20, min_periods=20).std()
+        var = pd.to_numeric(d[col], errors="coerce") if col in d.columns else pd.Series(np.nan, index=d.index)
+        lv = np.log1p(var / 100)
+        for k in (5, 20):
+            f[f"{pref}_ret_{k}"] = lv.rolling(k, min_periods=k).sum() * 100
+    argt_var = pd.to_numeric(d["argt_var_pct"], errors="coerce") if "argt_var_pct" in d.columns else pd.Series(np.nan, index=d.index)
+    f["argt_vol_20"] = argt_var.rolling(20, min_periods=20).std()
 
     # ── Régimen (cepo) y calendario: se conocen de antemano ──
     fe = d["fecha"]
@@ -424,7 +428,7 @@ def ranking_variables(f: pd.DataFrame, ini_actual: pd.Timestamp) -> pd.DataFrame
     print(r[r["tipo"] == "nivel lento"].drop(columns="tipo").to_string(index=False, float_format=lambda x: f"{x:+.3f}"))
     print(f"\nRuido: con la muestra efectiva, |ρ| < {ic_tr:.2f} (todo el train) y |ρ| < {ic_act:.2f} (régimen actual, solo ≈{len(act)//H_PRINCIPAL} observaciones")
     print("  independientes) no se distingue de cero. Las correlaciones simples con retornos son bajas por naturaleza: el valor está en")
-    print("  combinarlas con árboles; usá este ranking para descartar ruido, no para elegir 'la variable'.")
+    print("  combinarlas dentro de un modelo; usá este ranking para descartar ruido, no para elegir 'la variable'.")
     r["ruido_train_+-"], r["ruido_actual_+-"] = ic_tr, ic_act
     if motivo:
         print("Descartadas por colinealidad:", "; ".join(f"{k} ({v})" for k, v in motivo.items()))
@@ -607,7 +611,7 @@ def winsorizar_objetivo(f: pd.DataFrame, h: int | None = None, p=(1, 99)) -> pd.
 
 
 def estandarizar(f: pd.DataFrame, columnas: list[str]):
-    """Para modelos lineales/redes: (x - media_train) / desvío_train. Los árboles no la necesitan."""
+    """Para ElasticNet y SVR: (x - media_train) / desvío_train. El Random Forest no la necesita."""
     tr = f["conjunto"] == "train"
     mu, sd = f.loc[tr, columnas].mean(), f.loc[tr, columnas].std().replace(0, 1)
     return (f[columnas] - mu) / sd, mu, sd
