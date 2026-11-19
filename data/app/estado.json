@@ -1,6 +1,6 @@
 {
   "version_actualizador": "1.0",
-  "inicio": "2026-11-19T00:19:57-03:00",
+  "inicio": "2026-11-19T04:49:19-03:00",
   "avisos": [],
   "predicciones": {
     "1": {
@@ -14,7 +14,7 @@
       "alerta_alta_incertidumbre": 0
     }
   },
-  "actualizado": "2026-11-19T00:23:16-03:00",
+  "actualizado": "2026-11-19T04:52:36-03:00",
   "ultimo_dato": "19/11/2026",
   "blue_ultimo_dato": 1630.0,
   "versiones": {
