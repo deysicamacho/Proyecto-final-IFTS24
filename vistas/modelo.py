@@ -145,7 +145,7 @@ else:
               + (", seguido por " + " y ".join(f"<b>{x}</b>" for x in orden[1:3]) if len(orden) >= 3 else "") + ".</p>"] if orden else []
     if len(top) and top.iloc[-1]["variable"] == "mes_aguinaldo":
         lineas.append("<p>La variable individual más importante es el <b>mes de aguinaldo</b> (junio, julio y diciembre): en esos "
-                      "meses el blue tuvo un comportamiento distinto al del resto del año. El modelo detecta el patrón, no su causa.</p>")
+                      "meses el blue tuvo un comportamiento distinto al del resto del año. Ojo: el modelo detecta el patrón, no su causa.</p>")
     if menor == "C_mensuales_sentimiento_inflacion":
         lineas.append("<p>Los índices de <b>confianza</b> (del consumidor y en el Gobierno) y la <b>inflación</b> forman parte del "
                       "modelo, pero son el grupo que menos pesa a dos semanas.</p>")
@@ -179,6 +179,7 @@ que en ese momento no se conocía.</p></div>
 <div class="caja"><p>El modelo aprende de patrones del pasado: no puede anticipar hechos imprevistos como un anuncio, una renuncia o
 una crisis externa. En los meses de devaluación brusca el error fue mucho mayor que el promedio.</p>
 <p>A un mes (20 días hábiles) la mejora no fue confiable, por eso no se publica.</p>
+<p class="muted">Es una herramienta informativa de un proyecto académico. No es una recomendación de compra o venta.</p></div>""")
 
 st.html("<div style='height:14px'></div>")
 st.page_link("vistas/inicio.py", label="Volver al pronóstico del dólar blue", icon=":material/arrow_back:")
