@@ -10,7 +10,15 @@ No entrena ni descarga nada: lee los CSV de data/, que se actualizan solos cada 
 
 Ejecutar en una computadora:   streamlit run app.py
 """
+import sys
+from pathlib import Path
+
 import streamlit as st
+
+# Asegura que las páginas de vistas/ encuentren comun.py (está en la misma carpeta que este archivo)
+RAIZ = str(Path(__file__).resolve().parent)
+if RAIZ not in sys.path:
+    sys.path.insert(0, RAIZ)
 
 st.set_page_config(page_title="Pronóstico del dólar blue", page_icon="💵", layout="wide", initial_sidebar_state="collapsed")
 
