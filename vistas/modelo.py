@@ -4,7 +4,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-import comun as cm
+# comun.py está en la carpeta principal de la app (un nivel arriba de vistas/)
+import sys
+from pathlib import Path
+if str(Path(__file__).resolve().parents[1]) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import comun as cm  # noqa: E402
 
 C = cm.C
 d = cm.cargar()
@@ -178,8 +183,7 @@ que en ese momento no se conocía.</p></div>
 <div class="seccion">Límites</div>
 <div class="caja"><p>El modelo aprende de patrones del pasado: no puede anticipar hechos imprevistos como un anuncio, una renuncia o
 una crisis externa. En los meses de devaluación brusca el error fue mucho mayor que el promedio.</p>
-<p>A un mes (20 días hábiles) la mejora no fue confiable, por eso no se publica.</p>
-<p class="muted">Es una herramienta informativa de un proyecto académico. No es una recomendación de compra o venta.</p></div>""")
+<p>A un mes (20 días hábiles) la mejora no fue confiable, por eso no se publica.</p></div>""")
 
 st.html("<div style='height:14px'></div>")
 st.page_link("vistas/inicio.py", label="Volver al pronóstico del dólar blue", icon=":material/arrow_back:")
