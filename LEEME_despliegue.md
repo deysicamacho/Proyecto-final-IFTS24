@@ -3,13 +3,16 @@
 ## Qué hay en esta carpeta
 | Archivo | Para qué sirve |
 |---|---|
-| `app.py` | La aplicación web (Streamlit). Solo lee los CSV de `data/`; no entrena ni descarga nada. |
+| `app.py` | Punto de entrada de la aplicación web (Streamlit): arma las dos páginas. Solo lee los CSV de `data/`; no entrena ni descarga nada. |
+| `vistas/inicio.py` | Portada: último valor conocido del blue, proyección a dos semanas, aviso de alta incertidumbre y gráfico de evolución. |
+| `vistas/modelo.py` | Segunda página («Cómo funciona el pronóstico»): modelo, precisión, variables, rango y alerta. Se llega desde el pie de la portada. |
+| `comun.py` | Funciones compartidas por las dos páginas: lectura de datos, formato y estilos. |
 | `actualizar_pipeline.py` | Ejecuta las 5 capas del proyecto en orden y deja en `data/` lo que muestra la app. |
 | `construir_dataset_dolar_blue.py`, `diagnostico_dataset.py`, `analisis_eda_features.py`, `comparar_modelos.py`, `modelo_diario.py` | Los 5 scripts del pipeline, sin cambios. |
 | `.github/workflows/actualizar_datos.yml` | Tarea programada de GitHub: corre el pipeline cada día hábil a las 19:07 y publica los resultados. |
 | `requirements.txt` | Librerías de la app (las instala Streamlit Community Cloud). |
 | `requirements-pipeline.txt` | Librerías del pipeline (las instala GitHub Actions). |
-| `.streamlit/config.toml` | Colores de la app. |
+| `.streamlit/config.toml` | Colores de la app (tema oscuro). |
 | `raw/` | Acá van `ICC.xlsx` e `ICG.xlsx` (se cargan a mano). |
 | `data/` | Resultados ya calculados con el dataset al 01/11/2026, para que la app funcione desde el primer día. |
 
