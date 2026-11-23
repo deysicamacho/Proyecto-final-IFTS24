@@ -271,5 +271,5 @@ def barra_superior(d: dict) -> None:
 
 def pie_legal(d: dict) -> None:
     act = texto_actualizado(d)
-    st.html(f"""<div class="legal">{act + ' · ' if act else ''}Herramienta informativa de un proyecto académico. No es una recomendación
-      de compra o venta.<br>Datos: MonedAPI, ArgentinaDatos, BCRA y Universidad Torcuato Di Tella. App versión {VERSION_APP}.</div>""")
+    st.html(f"""<div class="legal">{act + '<br>' if act else ''}Datos: MonedAPI, ArgentinaDatos, BCRA y Universidad Torcuato Di Tella.
+      App versión {VERSION_APP}.</div>""")
