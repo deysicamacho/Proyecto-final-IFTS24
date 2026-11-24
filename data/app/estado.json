@@ -1,22 +1,22 @@
 {
   "version_actualizador": "1.0",
-  "inicio": "2026-11-24T10:18:36-03:00",
+  "inicio": "2026-11-24T16:42:45-03:00",
   "avisos": [],
   "predicciones": {
     "1": {
       "fecha_predicha": "25/11/2026",
-      "blue_predicho": 1676.73,
+      "blue_predicho": 1691.91,
       "alerta_alta_incertidumbre": 0
     },
     "10": {
       "fecha_predicha": "08/12/2026",
-      "blue_predicho": 1667.75,
+      "blue_predicho": 1675.52,
       "alerta_alta_incertidumbre": 0
     }
   },
-  "actualizado": "2026-11-24T10:21:54-03:00",
+  "actualizado": "2026-11-24T16:46:02-03:00",
   "ultimo_dato": "24/11/2026",
-  "blue_ultimo_dato": 1675.0,
+  "blue_ultimo_dato": 1690.0,
   "versiones": {
     "construir_dataset": "3.4",
     "analisis_eda_features": "2.2",
