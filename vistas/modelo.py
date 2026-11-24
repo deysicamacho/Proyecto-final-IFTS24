@@ -54,7 +54,7 @@ st.html("""<div class="seccion">En pocas palabras</div>
 
 st.html("""<div class="caja"><p><b>¿Qué modelo usa?</b> Una regresión por vectores de soporte (SVR). Se compararon tres
 algoritmos (una regresión lineal regularizada, un bosque de árboles de decisión y SVR) y SVR fue el que menos se equivocó con
-datos que no había visto. Una forma simple de pensarlo: SVR ignora los movimientos chiquitos del día a día y busca la tendencia
+datos que no había visto. Una forma simple de pensarlo: SVR ignora los movimientos pequeños del día a día y busca la tendencia
 de fondo, lo que lo hace más estable cuando el mercado cambia.</p>
 <p class="muted">Se reentrena con los datos nuevos, así que el pronóstico se ajusta a medida que cambia el contexto.</p></div>""")
 
