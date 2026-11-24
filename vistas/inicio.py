@@ -91,7 +91,7 @@ tarjeta_proy = f"""<div class="tarjeta proy {'alerta' if alerta else ''}">
       <div class="hoy" style="left:{pos(ult):.1f}%" title="Último valor"></div>
       <div class="punto" style="left:{pos(pred):.1f}%" title="Proyección"></div>
     </div>
-    <div class="leyenda-rango">{veces} veces el valor real quedó dentro de este rango. La rayita gris marca el último valor.</div>
+    <div class="leyenda-rango">{veces} veces el valor real quedó dentro de este rango. La raya gris marca el último valor.</div>
   </div>
 </div>"""
 st.html(f"<div class='tarjetas'>{tarjeta_hoy}{tarjeta_proy}</div>")
