@@ -1,6 +1,6 @@
 {
   "version_actualizador": "1.0",
-  "inicio": "2026-11-27T01:12:35-03:00",
+  "inicio": "2026-11-27T05:59:11-03:00",
   "avisos": [],
   "predicciones": {
     "1": {
@@ -14,7 +14,7 @@
       "alerta_alta_incertidumbre": 0
     }
   },
-  "actualizado": "2026-11-27T01:16:20-03:00",
+  "actualizado": "2026-11-27T06:02:13-03:00",
   "ultimo_dato": "27/11/2026",
   "blue_ultimo_dato": 1700.0,
   "versiones": {
@@ -29,5 +29,5 @@
     "D_regimen_y_calendario",
     "E_mep_ccl"
   ],
-  "duracion_min": 3.7
+  "duracion_min": 3.0
 }
