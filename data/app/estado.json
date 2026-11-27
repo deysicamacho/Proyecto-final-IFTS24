@@ -1,22 +1,22 @@
 {
   "version_actualizador": "1.0",
-  "inicio": "2026-11-26T05:50:30-03:00",
+  "inicio": "2026-11-27T01:12:35-03:00",
   "avisos": [],
   "predicciones": {
     "1": {
-      "fecha_predicha": "27/11/2026",
-      "blue_predicho": 1711.69,
+      "fecha_predicha": "30/11/2026",
+      "blue_predicho": 1700.47,
       "alerta_alta_incertidumbre": 0
     },
     "10": {
-      "fecha_predicha": "10/12/2026",
-      "blue_predicho": 1702.62,
+      "fecha_predicha": "11/12/2026",
+      "blue_predicho": 1707.24,
       "alerta_alta_incertidumbre": 0
     }
   },
-  "actualizado": "2026-11-26T05:53:56-03:00",
-  "ultimo_dato": "26/11/2026",
-  "blue_ultimo_dato": 1710.0,
+  "actualizado": "2026-11-27T01:16:20-03:00",
+  "ultimo_dato": "27/11/2026",
+  "blue_ultimo_dato": 1700.0,
   "versiones": {
     "construir_dataset": "3.4",
     "analisis_eda_features": "2.2",
@@ -29,5 +29,5 @@
     "D_regimen_y_calendario",
     "E_mep_ccl"
   ],
-  "duracion_min": 3.4
+  "duracion_min": 3.7
 }
